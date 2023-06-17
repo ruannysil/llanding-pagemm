@@ -70,7 +70,7 @@ export default function Proposal() {
             mt={6}
             justifyContent="center"
           >
-            <Box>
+            <Box p={"0.2rem"}>
               <Center>
                 <Image
                   src={Intelligence}
@@ -87,7 +87,7 @@ export default function Proposal() {
               </Flex>
             </Box>
 
-            <Box>
+            <Box p={"0.2rem"}>
               <Center>
                 <Image
                   src={MoreClient}
@@ -104,7 +104,7 @@ export default function Proposal() {
               </Flex>
             </Box>
 
-            <Box>
+            <Box p={"0.2rem"}>
               <Center>
                 <Image
                   src={Varieties}
@@ -121,7 +121,7 @@ export default function Proposal() {
               </Flex>
             </Box>
 
-            <Box>
+            <Box p={"0.2rem"}>
               <Center>
                 <Image
                   src={Accessibility}
@@ -138,7 +138,7 @@ export default function Proposal() {
               </Flex>
             </Box>
 
-            <Box>
+            <Box p={"0.2rem"}>
               <Center>
                 <Image
                   src={OfflineSupport}
@@ -154,6 +154,7 @@ export default function Proposal() {
                 </Text>
               </Flex>
             </Box>
+            
           </Grid>
         </Flex>
       </Box>

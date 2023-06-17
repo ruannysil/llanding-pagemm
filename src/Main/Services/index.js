@@ -22,14 +22,14 @@ export default function Services() {
         >
           <Box
             flex="1"
-            textAlign="start"
-            alignItems="flex-start"
+            textAlign={isDesktop ? "start":  (isMobile ? "center" : "center")}
+            alignItems={isDesktop ? "flex-start" : (isMobile ? "center" : "center" )}
             justifyContent="flex-end"
             display="flex"
             gap={"1rem"}
             flexDirection="column"
             width={isMobile ? "100%" : "auto"}
-            style={{ alignItems: "center", textAlign: "center" }}
+            // style={{ alignItems: "center", textAlign: "center" }}
           >
             <Text
               fontSize={isMobile ? "21px" : "38px"}
