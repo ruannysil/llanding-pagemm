@@ -8,6 +8,7 @@ import GooglePlayStore from '../../images/GooglePlayStore.svg'
 export default function Footer() {
 
   const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const [isDesktop] = useMediaQuery("(max-width: 1024px)");
 
   return (
     <Box bg="#E5E5E587">
@@ -19,7 +20,7 @@ export default function Footer() {
         mx="auto"
         mt="2rem"
         flexWrap={isMobile ? "none" : "wrap"}
-        gap={isMobile ? "0" : "2rem"}
+        gap={isMobile ? "0" : "5rem"}
         alignItems={isMobile ? "center" : "baseline"}
       >
         <Flex
@@ -94,21 +95,35 @@ export default function Footer() {
         </Flex>
      
       </Flex>
-        <Flex
-          direction={{ base: "column", md: "row" }}
-          align={isMobile ?  "center" :  "flex-end"}
-          justify="center"
-          p="2rem"
-          // bg="#f9f9f9"
-          borderTop="1px solid rgba(0,0,0,0.1)"
-          borderWidth={"1%"}
+      <Flex direction="column" align="center" justify="center" p={isMobile ? "1rem" : "2rem"} borderWidth="1%">
+      <hr
+        style={{ borderTop: '1px solid rgba(0, 0, 0, 0.292)', width: isDesktop ? '100%' : '50%' }}
+      />
+      <Flex direction={isMobile ? 'column' : 'row'} justifyContent="center" p={isMobile ? "0rem" : "2rem"} >
+        <Text
+          fontSize={12}
+          color="#000"
+          textAlign={isMobile ? "center" : "inherit"}
+          mt={{ base: '2rem', md: '2rem' }}
+          mb={{ base: '1rem', md: '0' }}
+          w={isMobile ? "100%" : "44%"}
         >
-          <Text fontSize={12} color="#000" textAlign="center" mb={{ base: "1rem", md: "0" }}>
-            © 2023 Mumu Delivery. Todos os direitos reservados.
-          </Text>
+          Nossos pés estão no chão, mas nossas ambições descoladas estão acima das nuvens.
+          Aqui está como nos movemos para satisfazer nossos clientes.
+        </Text>
 
-        </Flex>
-
+        <Text
+          fontSize={12}
+          color="#000"
+          textAlign={isMobile ? "center" : "end"}
+          mt={{ base: '2rem', md: '2rem' }}
+          mb={{ base: '1rem', md: '0' }}
+          w={isMobile ? "100%" : "33%"}
+        >
+          Mumu Delivery © 2023 - Todos os direitos reservados - CNPJ: 00.000.000/0000-00
+        </Text>
+      </Flex>
+    </Flex>
     </Box>
   );
 }

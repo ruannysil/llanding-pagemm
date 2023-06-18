@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   Flex,
   Box,
@@ -17,10 +17,10 @@ import whatsappImage from '../../images/whatsapp.svg';
 export default function Requirements() {
   const isMobile = useBreakpointValue({ base: true, md: false, sm: true });
   const isDesktop = useBreakpointValue({ base: false, md: true, lg: true });
-  const isDisplay = useMediaQuery("(max-width: 1440px)");
+  const isDisplay = useMediaQuery('(max-width: 1441px)');
 
-  const [showWhatsApp, setShowWhatsApp] = useState(false);
-  const [lastScrollPosition, setLastScrollPosition] = useState(0);
+  const [isPartnershipVisible, setIsPartnershipVisible] = useState(false);
+  const partnershipRef = useRef(null);
 
   const getFlexWrap = () => {
     return isMobile && !isDesktop ? 'wrap' : 'nowrap';
@@ -30,56 +30,30 @@ export default function Requirements() {
     alert('Você clicou no botão do WhatsApp');
   };
 
-  const handleScroll = () => {
-    const currentScrollPosition = window.pageYOffset;
+  const checkPartnershipVisibility = () => {
+    const element = partnershipRef.current;
 
-    if (
-      currentScrollPosition > lastScrollPosition &&
-      currentScrollPosition > window.innerHeight &&
-      currentScrollPosition < document.getElementById('requirements').offsetTop
-    ) {
-      setShowWhatsApp(true);
-    } else if (currentScrollPosition < lastScrollPosition) {
-      setShowWhatsApp(true);
-    } else {
-      setShowWhatsApp(false);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+      setIsPartnershipVisible(isVisible);
     }
-
-    setLastScrollPosition(currentScrollPosition);
   };
 
   const handleResize = () => {
-    const maxWidth = 1440;
+    const maxWidth = 1441;
     const windowWidth = window.innerWidth;
 
-    setShowWhatsApp(windowWidth <= maxWidth);
+    setIsPartnershipVisible(windowWidth <= maxWidth);
   };
 
   useEffect(() => {
-    handleResize();
+    checkPartnershipVisibility();
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
-
-  // const getFlexWrap = () => {
-  //   return isMobile && !isDesktop ? 'wrap' : 'nowrap';
-  // };
-
-  window.addEventListener('scroll', function () {
-    const element = document.getElementById('requirements');
-    const rect = element.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-
-    if (!isVisible) {
-      setShowWhatsApp(false);
-    }
-  });
 
   return (
     <Flex p={isMobile ? '1rem' : '0.2rem'} m={isMobile ? '5rem 0' : '9rem 0'} justify="center" id="requirements">
@@ -95,7 +69,7 @@ export default function Requirements() {
             p={{ base: '0', md: '0 1rem' }}
           >
             <Flex
-              className="AQUI"
+              ref={partnershipRef}
               direction="column"
               w="100%"
               align="center"
@@ -106,95 +80,96 @@ export default function Requirements() {
               gap="4rem"
               textAlign="center"
               justifyContent="center"
+              id="partnership" // Adicionado ID "partnership" ao elemento
             >
               <Accordion allowToggle w="100%">
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
-                      <Box as="span" flex="1" textAlign="left" color="#000">
-                        Quais taxas são cobradas?
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4} color="#000">
-                    Em nossa empresa, aplicamos uma taxa fixa de 6% em todos os produtos disponíveis. Essa taxa é
-                    incorporada ao preço final para garantir uma operação eficiente e sustentável. Estamos comprometidos em
-                    fornecer um serviço de qualidade a todos os nossos clientes e garantir transparência em relação às taxas
-                    aplicadas. Se você tiver alguma dúvida adicional sobre as taxas ou qualquer outro aspecto dos nossos
-                    serviços, estamos à disposição para ajudar.
-                  </AccordionPanel>
-                </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
+                          <Box as="span" flex="1" textAlign="left" color="#000">
+                            Quais taxas são cobradas?
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4} color="#000">
+                        Em nossa empresa, aplicamos uma taxa fixa de 6% em todos os produtos disponíveis. Essa taxa é
+                        incorporada ao preço final para garantir uma operação eficiente e sustentável. Estamos comprometidos em
+                        fornecer um serviço de qualidade a todos os nossos clientes e garantir transparência em relação às taxas
+                        aplicadas. Se você tiver alguma dúvida adicional sobre as taxas ou qualquer outro aspecto dos nossos
+                        serviços, estamos à disposição para ajudar.
+                      </AccordionPanel>
+                    </AccordionItem>
 
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
-                      <Box as="span" flex="1" textAlign="left" color="#000">
-                        O Mumu Delivery pode cancelar minha conta a qualquer momento?
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4} color="#000">
-                    Sim, o Mumu Delivery reserva-se o direito de cancelar uma conta caso haja violação grave das políticas
-                    ou se as ações do usuário forem prejudiciais à plataforma ou a outros usuários. No entanto, priorizamos
-                    a resolução de problemas e a comunicação aberta, buscando encontrar soluções em conjunto. Nosso objetivo
-                    é oferecer um serviço de qualidade e um ambiente seguro para todos os usuários.
-                  </AccordionPanel>
-                </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
+                          <Box as="span" flex="1" textAlign="left" color="#000">
+                            O Mumu Delivery pode cancelar minha conta a qualquer momento?
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4} color="#000">
+                        Sim, o Mumu Delivery reserva-se o direito de cancelar uma conta caso haja violação grave das políticas
+                        ou se as ações do usuário forem prejudiciais à plataforma ou a outros usuários. No entanto, priorizamos
+                        a resolução de problemas e a comunicação aberta, buscando encontrar soluções em conjunto. Nosso objetivo
+                        é oferecer um serviço de qualidade e um ambiente seguro para todos os usuários.
+                      </AccordionPanel>
+                    </AccordionItem>
 
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
-                      <Box as="span" flex="1" textAlign="left" color="#000">
-                        Quais documentos preciso para me cadastrar?
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4} color="#000">
-                    Para se cadastrar no Mumu Delivery, você precisará informar seu CPF, nome completo, logradouro e CEP.
-                    Essas informações são necessárias para criar sua conta e garantir uma entrega eficiente dos pedidos.
-                  </AccordionPanel>
-                </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
+                          <Box as="span" flex="1" textAlign="left" color="#000">
+                            Quais documentos preciso para me cadastrar?
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4} color="#000">
+                        Para se cadastrar no Mumu Delivery, você precisará informar seu CPF, nome completo, logradouro e CEP.
+                        Essas informações são necessárias para criar sua conta e garantir uma entrega eficiente dos pedidos.
+                      </AccordionPanel>
+                    </AccordionItem>
 
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
-                      <Box as="span" flex="1" textAlign="left" color="#000">
-                        Em quais cidades tem Mumu Delivery?
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4} color="#000">
-                    O Mumu Delivery está disponível em diversas cidades, incluindo grandes capitais como São Paulo e Rio de
-                    Janeiro. Além dessas, o serviço também está presente em outras capitais e regiões metropolitanas do
-                    Brasil. A expansão do Mumu Delivery tem buscado atender cada vez mais clientes em diferentes localidades,
-                    proporcionando conveniência e facilidade na entrega de produtos.
-                  </AccordionPanel>
-                </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
+                          <Box as="span" flex="1" textAlign="left" color="#000">
+                            Em quais cidades tem Mumu Delivery?
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4} color="#000">
+                        O Mumu Delivery está disponível em diversas cidades, incluindo grandes capitais como São Paulo e Rio de
+                        Janeiro. Além dessas, o serviço também está presente em outras capitais e regiões metropolitanas do
+                        Brasil. A expansão do Mumu Delivery tem buscado atender cada vez mais clientes em diferentes localidades,
+                        proporcionando conveniência e facilidade na entrega de produtos.
+                      </AccordionPanel>
+                    </AccordionItem>
 
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
-                      <Box as="span" flex="1" textAlign="left" color="#000">
-                        Quanto tempo leva para meu cadastro ter aceito no aplicativo?
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4} color="#000">
-                    O processo de aprovação do cadastro no aplicativo do Mumu Delivery é rápido e geralmente leva apenas
-                    alguns minutos. Após preencher corretamente todas as informações necessárias, como CPF, nome completo,
-                    endereço e CEP, o sistema realiza uma verificação e, se todos os dados estiverem corretos, seu cadastro
-                    será aprovado quase instantaneamente. Assim, você poderá começar a usar o Mumu Delivery e desfrutar dos
-                    seus serviços de entrega de forma ágil e eficiente.
-                  </AccordionPanel>
-                </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton color="#000" _hover={{ backgroundColor: 'none' }}>
+                          <Box as="span" flex="1" textAlign="left" color="#000">
+                            Quanto tempo leva para meu cadastro ter aceito no aplicativo?
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4} color="#000">
+                        O processo de aprovação do cadastro no aplicativo do Mumu Delivery é rápido e geralmente leva apenas
+                        alguns minutos. Após preencher corretamente todas as informações necessárias, como CPF, nome completo,
+                        endereço e CEP, o sistema realiza uma verificação e, se todos os dados estiverem corretos, seu cadastro
+                        será aprovado quase instantaneamente. Assim, você poderá começar a usar o Mumu Delivery e desfrutar dos
+                        seus serviços de entrega de forma ágil e eficiente.
+                      </AccordionPanel>
+                    </AccordionItem>
               </Accordion>
             </Flex>
-            {showWhatsApp && (
+            {isPartnershipVisible && (
               <div
                 style={{
                   position: 'fixed',
@@ -218,10 +193,10 @@ export default function Requirements() {
                     maxWidth="1440px"
                   >
                     <img
-                      src={showWhatsApp ? whatsappImage : null}
+                      src={whatsappImage}
                       alt="WhatsApp"
                       onClick={handleAlert}
-                      style={{ display: showWhatsApp ? 'block' : 'none' }}
+                      style={{ display: 'block' }}
                     />
                   </Link>
                 )}
