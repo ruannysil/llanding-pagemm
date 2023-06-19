@@ -1,7 +1,8 @@
-import { Flex, Center, Link, Box, Image, Button, useMediaQuery, Menu, MenuButton, MenuList, MenuItem, IconButton } from "@chakra-ui/react";
-import { GiHamburgerMenu } from 'react-icons/gi'
+import { Flex, Center, Box, Image, Button, useMediaQuery, Menu, MenuButton, MenuList, MenuItem, IconButton } from "@chakra-ui/react";
+import { GiHamburgerMenu } from 'react-icons/gi';
 import logo from '../../images/logo_oficial_mumudelivery_tipografia2 1.svg';
 import { useState, useEffect, useRef } from "react";
+import { Link } from 'react-scroll';
 
 export default function Header() {
   const [isMobile] = useMediaQuery("(max-width: 768px)");
@@ -29,6 +30,10 @@ export default function Header() {
     setIsMenuOpen(false);
   };
 
+  const handleButton = () => {
+    alert("Acesso Área Parceiro")
+  }
+
   return (
     <Flex flex={1} direction={"row"} justify={"space-between"}>
       <Center
@@ -39,20 +44,20 @@ export default function Header() {
         m={isMobile ? "0" : "0 1rem"}
       >
         <Flex alignItems={"center"}>
-          <Link top={"/"} mr={5}>
+          <Link to="/" smooth={true} duration={500} offset={-70} mr={5} style={{cursor: "pointer"}} >
             <Image src={logo} alt="logo" />
           </Link>
           <Box display={isMobile ? "none" : "flex"} direction={"row"} gap={"1em"}>
-            <Link style={{ textDecoration: "none", color: "#000" }}>
+            <Link to="about" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
               <Box _hover={{ color: "red" }}>O que é o Mumu?</Box>
             </Link>
-            <Link style={{ textDecoration: "none", color: "#000" }}>
-              <Box _hover={{ color: "red" }}>Beneficios</Box>
+            <Link to="proposal" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
+              <Box _hover={{ color: "red" }}>Benefícios</Box>
             </Link>
-            <Link style={{ textDecoration: "none", color: "#000" }}>
+            <Link to="partnership" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
               <Box _hover={{ color: "red" }}>Requisitos</Box>
             </Link>
-            <Link style={{ textDecoration: "none", color: "#000" }}>
+            <Link to="requirements" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
               <Box _hover={{ color: "red" }}>F.A.Q</Box>
             </Link>
           </Box>
@@ -71,6 +76,8 @@ export default function Header() {
               variant="outline"
             />
             <MenuList bgColor={"#f00"} color={"#fff"} ref={menuRef}>
+
+              <Link to="about" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
               <MenuItem
                 bgColor={"#f00"}
                 _hover={{ bgColor: "#fff", color: "#000000" }}
@@ -78,13 +85,19 @@ export default function Header() {
               >
                 O que é o Mumu?
               </MenuItem>
+              </Link>
+              
+              <Link to="proposal" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
               <MenuItem
                 bgColor={"#f00"}
                 _hover={{ bgColor: "#fff", color: "#000000" }}
                 onClick={handleMenuItemClick}
               >
-                Beneficios
+                Benefícios
               </MenuItem>
+              </Link>
+
+              <Link to="partnership" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
               <MenuItem
                 bgColor={"#f00"}
                 _hover={{ bgColor: "#fff", color: "#000000" }}
@@ -92,22 +105,27 @@ export default function Header() {
               >
                 Requisitos
               </MenuItem>
+              </Link>
+
+              <Link to="requirements" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
               <MenuItem
                 bgColor={"#f00"}
                 _hover={{ bgColor: "#fff", color: "#000000" }}
                 onClick={handleMenuItemClick}
               >
                 F.A.Q
-              </MenuItem>
+              </MenuItem>    
+              </Link>
+
               <MenuItem
                 bgColor={"#f00"}
                 _hover={{ bgColor: "#fff", color: "#000000" }}
-                onClick={handleMenuItemClick}
+                onClick={handleButton}
               >
                 Já sou parceiro
               </MenuItem>
             </MenuList>
-          </Menu> 
+          </Menu>
         ) : (
           <Button
             _hover={{ backgroundColor: "#9b3d3d" }}
@@ -116,8 +134,8 @@ export default function Header() {
             fontFamily="inter"
             fontWeight="500"
             fontSize="14px"
-            boxShaodow="0px 2px 9px #00000069"
-            onClick={handleMenuToggle}
+            boxShadow="0px 2px 9px #00000069"
+            onClick={handleButton}
           >
             Já sou parceiro
           </Button>

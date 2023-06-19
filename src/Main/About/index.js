@@ -6,7 +6,7 @@ export default function About() {
     const [isMobile] = useMediaQuery("(max-width: 851px)") 
 
     return (
-        <Flex p={'0.2rem'} mt={"5rem"}>
+        <Flex p={'0.2rem'} mt={"5rem"} id='about'>
           <Box
             w={"100%"}
             height={"35rem"}

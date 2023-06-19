@@ -24,7 +24,7 @@ export default function Proposal() {
   };
 
   return (
-    <Flex p="0.2rem" mt={isMobile ? "2rem" : "5rem"}>
+    <Flex p="0.2rem" mt={isMobile ? "2rem" : "5rem"} id='proposal'>
       <Box w="100%" position="relative">
         <Flex
           direction="column"
