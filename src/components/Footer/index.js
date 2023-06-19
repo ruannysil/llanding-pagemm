@@ -11,7 +11,7 @@ export default function Footer() {
   const [isDesktop] = useMediaQuery("(max-width: 1024px)");
 
   return (
-    <Box bg="#E5E5E587">
+    <Box bg="#E5E5E587" id="footer">
       <Flex
         direction={isMobile ? "column" : "row"}
         justify="center"

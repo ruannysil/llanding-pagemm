@@ -30,8 +30,8 @@ export default function Header() {
     setIsMenuOpen(false);
   };
 
-  const handleButton = () => {
-    alert("Acesso Área Parceiro")
+  function handleButton() {
+    window.location.href = "https://seja.mumu.delivery/login";
   }
 
   return (
@@ -78,43 +78,43 @@ export default function Header() {
             <MenuList bgColor={"#f00"} color={"#fff"} ref={menuRef}>
 
               <Link to="about" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
-              <MenuItem
-                bgColor={"#f00"}
-                _hover={{ bgColor: "#fff", color: "#000000" }}
-                onClick={handleMenuItemClick}
-              >
-                O que é o Mumu?
-              </MenuItem>
+                <MenuItem
+                  bgColor={"#f00"}
+                  _hover={{ bgColor: "#fff", color: "#000000" }}
+                  onClick={handleMenuItemClick}
+                >
+                  O que é o Mumu?
+                </MenuItem>
               </Link>
-              
+
               <Link to="proposal" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
-              <MenuItem
-                bgColor={"#f00"}
-                _hover={{ bgColor: "#fff", color: "#000000" }}
-                onClick={handleMenuItemClick}
-              >
-                Benefícios
-              </MenuItem>
+                <MenuItem
+                  bgColor={"#f00"}
+                  _hover={{ bgColor: "#fff", color: "#000000" }}
+                  onClick={handleMenuItemClick}
+                >
+                  Benefícios
+                </MenuItem>
               </Link>
 
               <Link to="partnership" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
-              <MenuItem
-                bgColor={"#f00"}
-                _hover={{ bgColor: "#fff", color: "#000000" }}
-                onClick={handleMenuItemClick}
-              >
-                Requisitos
-              </MenuItem>
+                <MenuItem
+                  bgColor={"#f00"}
+                  _hover={{ bgColor: "#fff", color: "#000000" }}
+                  onClick={handleMenuItemClick}
+                >
+                  Requisitos
+                </MenuItem>
               </Link>
 
               <Link to="requirements" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
-              <MenuItem
-                bgColor={"#f00"}
-                _hover={{ bgColor: "#fff", color: "#000000" }}
-                onClick={handleMenuItemClick}
-              >
-                F.A.Q
-              </MenuItem>    
+                <MenuItem
+                  bgColor={"#f00"}
+                  _hover={{ bgColor: "#fff", color: "#000000" }}
+                  onClick={handleMenuItemClick}
+                >
+                  F.A.Q
+                </MenuItem>
               </Link>
 
               <MenuItem

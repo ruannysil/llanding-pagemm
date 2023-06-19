@@ -21,18 +21,19 @@ export default function Main() {
                   Essa união vai deixar seu negócio <br/>fulminante, vamos de <Text color={"#FED600"} as={"span"} m={0}>Mumu?</Text>
                 </Text>
                 <Button
-                  _hover={{ backgroundColor: "#fce3e3bb", color: "#fff", fontWeight: "bold"  }}
+                  _hover={{ backgroundColor: "#fce3e3bb", color: "#fff", fontWeight: "bold" }}
                   backgroundColor="#ffffff"
                   color="#f00"
                   fontFamily="inter"
                   fontWeight="600"
                   borderRadius={15}
                   fontSize="19px"
-                  boxShaodow="55px 55px 55px #000000ff"
+                  boxShadow={"5px 10px 35px #00000073"}
                   p={"24px 1.3rem"}
                 >
                   Vem ser nosso parceiro!
                 </Button>
+
               </Box>
 
               <Center position="relative" overflow="hidden" mt={isMobile ? "0" : "5rem"}>

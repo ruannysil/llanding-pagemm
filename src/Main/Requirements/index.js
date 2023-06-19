@@ -1,59 +1,28 @@
-import { useEffect, useState, useRef } from 'react';
+
 import {
   Flex,
   Box,
-  Link,
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
   useBreakpointValue,
-  useMediaQuery,
 } from '@chakra-ui/react';
 
-import whatsappImage from '../../images/whatsapp.svg';
+
 
 export default function Requirements() {
   const isMobile = useBreakpointValue({ base: true, md: false, sm: true });
   const isDesktop = useBreakpointValue({ base: false, md: true, lg: true });
-  const isDisplay = useMediaQuery('(max-width: 1441px)');
+  
 
-  const [isPartnershipVisible, setIsPartnershipVisible] = useState(false);
-  const partnershipRef = useRef(null);
 
   const getFlexWrap = () => {
     return isMobile && !isDesktop ? 'wrap' : 'nowrap';
   };
 
-  const handleAlert = () => {
-    alert('Você clicou no botão do WhatsApp');
-  };
 
-  const checkPartnershipVisibility = () => {
-    const element = partnershipRef.current;
-
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-      setIsPartnershipVisible(isVisible);
-    }
-  };
-
-  const handleResize = () => {
-    const maxWidth = 1441;
-    const windowWidth = window.innerWidth;
-
-    setIsPartnershipVisible(windowWidth <= maxWidth);
-  };
-
-  useEffect(() => {
-    checkPartnershipVisibility();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   return (
     <Flex p={isMobile ? '1rem' : '0.2rem'} m={isMobile ? '5rem 0' : '9rem 0'} justify="center" id="requirements">
@@ -69,7 +38,7 @@ export default function Requirements() {
             p={{ base: '0', md: '0 1rem' }}
           >
             <Flex
-              ref={partnershipRef}
+              // ref={partnershipRef}
               direction="column"
               w="100%"
               align="center"
@@ -80,7 +49,7 @@ export default function Requirements() {
               gap="4rem"
               textAlign="center"
               justifyContent="center"
-              id="partnership" // Adicionado ID "partnership" ao elemento
+              id="partnership"
             >
               <Accordion allowToggle w="100%">
                     <AccordionItem>
@@ -169,56 +138,6 @@ export default function Requirements() {
                     </AccordionItem>
               </Accordion>
             </Flex>
-            {isPartnershipVisible && (
-              <div
-                style={{
-                  position: 'fixed',
-                  bottom: isMobile ? '47rem' : isDesktop ? '30rem' : '4rem',
-                  right: isMobile ? '1rem' : isDesktop ? '5rem' : '5rem',
-                  zIndex: '9999',
-                }}
-              >
-                {isDisplay && (
-                  <Link
-                    // href="https://seu-link-do-whatsapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    alt="Botão para abrir conversa no WhatsApp"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    borderRadius="50%"
-                    width="60px"
-                    height="60px"
-                    maxWidth="1440px"
-                  >
-                    <img
-                      src={whatsappImage}
-                      alt="WhatsApp"
-                      onClick={handleAlert}
-                      style={{ display: 'block' }}
-                    />
-                  </Link>
-                )}
-                {!isDisplay && (
-                  <Link
-                    // href="https://seu-link-do-whatsapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    alt="Botão para abrir conversa no WhatsApp"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    borderRadius="50%"
-                    width="60px"
-                    height="60px"
-                    maxWidth="1440px"
-                  >
-                    <img src={whatsappImage} alt="WhatsApp" onClick={handleAlert} />
-                  </Link>
-                )}
-              </div>
-            )}
           </Flex>
         </Flex>
       </Box>
