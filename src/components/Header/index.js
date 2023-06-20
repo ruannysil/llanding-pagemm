@@ -31,7 +31,7 @@ export default function Header() {
   };
 
   function handleButton() {
-    window.location.href = "https://seja.mumu.delivery/login";
+    window.location.href = "https://login-mumu.vercel.app/";
   }
 
   return (
