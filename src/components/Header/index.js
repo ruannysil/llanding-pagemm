@@ -31,7 +31,7 @@ export default function Header() {
   };
 
   function handleButton() {
-    window.location.href = "https://login-mumu.vercel.app/";
+    window.location.href = "https://login-register-mumu.vercel.app/";
   }
 
   return (
