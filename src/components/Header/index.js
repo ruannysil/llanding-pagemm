@@ -43,11 +43,11 @@ export default function Header() {
         alignItems={"center"}
         m={isMobile ? "0" : "0 1rem"}
       >
-        <Flex alignItems={"center"}>
+        <Flex alignItems={"center"} gap={"1rem"}>
           <Link to="/" smooth={true} duration={500} offset={-70} mr={5} style={{cursor: "pointer"}} >
             <Image src={logo} alt="logo" />
           </Link>
-          <Box display={isMobile ? "none" : "flex"} direction={"row"} gap={"1em"}>
+          <Box display={isMobile ? "none" : "flex"} direction={"row"} gap={"1rem"}>
             <Link to="about" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
               <Box _hover={{ color: "red" }}>O que é o Mumu?</Box>
             </Link>
