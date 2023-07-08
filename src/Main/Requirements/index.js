@@ -25,13 +25,14 @@ export default function Requirements() {
 
 
   return (
-    <Flex p={isMobile ? '1rem' : '0.2rem'} m={isMobile ? '5rem 0' : '9rem 0'} justify="center" id="requirements">
+    <Flex m={isMobile ? '5rem 0' : '9rem 0'} justify="center" id="requirements">
       <Box w="100%" position="relative">
-        <Flex p={{ base: '0', md: '0 1rem' }} align="center" justify="center" mt={isMobile ? '9rem' : '0.3rem'}>
+        <Flex p={{ base: '0', md: '0 1rem' }} align="center" mr={isMobile ? "1rem" : "0"} ml={isMobile ? "1rem" : "0"} justify="center" mt={isMobile ? '9rem' : '0.3rem'}>
           <Flex
             border="3px solid #FED600"
             borderRadius="15px"
-            w={isMobile ? '100%' : '70%'}
+            w={isMobile ? '100%' : '72rem'}
+
             mt={{ base: '-12rem', md: '0' }}
             direction="column"
             gap="1rem"

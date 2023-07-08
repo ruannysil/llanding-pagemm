@@ -6,7 +6,7 @@ export default function Services() {
   const isDesktop = useBreakpointValue({ base: false, md: true });
 
   return (
-    <Flex p="0.2rem" mt={isMobile ? "18rem" : "13rem"} id='services'>
+    <Flex  mt={isMobile ? "18rem" : "13rem"} id='services'>
       <Box w="100%" position="relative" bg="#950000">
         <Flex
           className='mobile'

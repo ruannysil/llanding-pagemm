@@ -97,7 +97,7 @@ export default function Footer() {
       </Flex>
       <Flex direction="column" align="center" justify="center" p={isMobile ? "1rem" : "2rem"} borderWidth="1%">
       <hr
-        style={{ borderTop: '1px solid rgba(0, 0, 0, 0.292)', width: isDesktop ? '100%' : '50%' }}
+        style={{ borderTop: '1px solid rgba(0, 0, 0, 0.292)', width: isDesktop ? '100%' : '100%' }}
       />
       <Flex direction={isMobile ? 'column' : 'row'} justifyContent="center" p={isMobile ? "0rem" : "2rem"} >
         <Text

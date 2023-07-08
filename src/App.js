@@ -43,7 +43,7 @@ function App() {
 
   return (
     <Flex h="100vh" justify="center">
-      <Flex direction="column" w="100%" maxW="1440px">
+      <Flex direction="column" w="100%" >
         <Header />
         <Main />
         <About />

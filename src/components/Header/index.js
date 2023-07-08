@@ -1,11 +1,24 @@
-import { Flex, Center, Box, Image, Button, useMediaQuery, Menu, MenuButton, MenuList, MenuItem, IconButton } from "@chakra-ui/react";
-import { GiHamburgerMenu } from 'react-icons/gi';
-import logo from '../../images/logo_oficial_mumudelivery_tipografia2 1.svg';
+import {
+  Flex,
+  Center,
+  Box,
+  Image,
+  Button,
+  useMediaQuery,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+} from "@chakra-ui/react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import logo from "../../images/logo_oficial_mumudelivery_tipografia2 1.svg";
 import { useState, useEffect, useRef } from "react";
-import { Link } from 'react-scroll';
+import { Link } from "react-scroll";
 
 export default function Header() {
   const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const [isDesktop] = useMediaQuery("(max-width: 1440px)");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -35,29 +48,81 @@ export default function Header() {
   }
 
   return (
-    <Flex flex={1} direction={"row"} justify={"space-between"}>
+    <Flex flex={1} direction={"row"} justify={"center"}>
       <Center
         w={"100%"}
-        justifyContent={"space-between"}
+        justifyContent={isDesktop ? "space-between" : "space-around"}
         p={4}
         alignItems={"center"}
-        m={isMobile ? "0" : "0 1rem"}
+        
+        maxW={isDesktop}
       >
         <Flex alignItems={"center"} gap={"1rem"}>
-          <Link to="/" smooth={true} duration={500} offset={-70} mr={5} style={{cursor: "pointer"}} >
+          <Link
+            to="/"
+            smooth={true}
+            duration={500}
+            offset={-70}
+            mr={5}
+            style={{ cursor: "pointer" }}
+          >
             <Image src={logo} alt="logo" />
           </Link>
-          <Box display={isMobile ? "none" : "flex"} direction={"row"} gap={"1rem"}>
-            <Link to="about" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
+          <Box
+            display={isMobile ? "none" : "flex"}
+            direction={"row"}
+            gap={"1rem"}
+          >
+            <Link
+              to="about"
+              smooth={true}
+              duration={500}
+              offset={-70}
+              style={{
+                textDecoration: "none",
+                color: "#000",
+                userSelect: "none",
+              }}
+            >
               <Box _hover={{ color: "red" }}>O que é o Mumu?</Box>
             </Link>
-            <Link to="proposal" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
+            <Link
+              to="proposal"
+              smooth={true}
+              duration={500}
+              offset={-70}
+              style={{
+                textDecoration: "none",
+                color: "#000",
+                userSelect: "none",
+              }}
+            >
               <Box _hover={{ color: "red" }}>Benefícios</Box>
             </Link>
-            <Link to="partnership" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
+            <Link
+              to="partnership"
+              smooth={true}
+              duration={500}
+              offset={-70}
+              style={{
+                textDecoration: "none",
+                color: "#000",
+                userSelect: "none",
+              }}
+            >
               <Box _hover={{ color: "red" }}>Requisitos</Box>
             </Link>
-            <Link to="requirements" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none", color: "#000", userSelect: "none" }}>
+            <Link
+              to="requirements"
+              smooth={true}
+              duration={500}
+              offset={-70}
+              style={{
+                textDecoration: "none",
+                color: "#000",
+                userSelect: "none",
+              }}
+            >
               <Box _hover={{ color: "red" }}>F.A.Q</Box>
             </Link>
           </Box>
@@ -67,7 +132,9 @@ export default function Header() {
             <MenuButton
               as={IconButton}
               aria-label="Options"
-              icon={<GiHamburgerMenu color="#fff" style={{ fontSize: '22px' }} />}
+              icon={
+                <GiHamburgerMenu color="#fff" style={{ fontSize: "22px" }} />
+              }
               onClick={handleMenuToggle}
               _hover={{ backgroundColor: "#ff00009e" }}
               _active={{ backgroundColor: "none" }}
@@ -76,8 +143,13 @@ export default function Header() {
               variant="outline"
             />
             <MenuList bgColor={"#f00"} color={"#fff"} ref={menuRef}>
-
-              <Link to="about" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
+              <Link
+                to="about"
+                smooth={true}
+                duration={500}
+                offset={-70}
+                style={{ textDecoration: "none" }}
+              >
                 <MenuItem
                   bgColor={"#f00"}
                   _hover={{ bgColor: "#fff", color: "#000000" }}
@@ -87,7 +159,13 @@ export default function Header() {
                 </MenuItem>
               </Link>
 
-              <Link to="proposal" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
+              <Link
+                to="proposal"
+                smooth={true}
+                duration={500}
+                offset={-70}
+                style={{ textDecoration: "none" }}
+              >
                 <MenuItem
                   bgColor={"#f00"}
                   _hover={{ bgColor: "#fff", color: "#000000" }}
@@ -97,7 +175,13 @@ export default function Header() {
                 </MenuItem>
               </Link>
 
-              <Link to="partnership" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
+              <Link
+                to="partnership"
+                smooth={true}
+                duration={500}
+                offset={-70}
+                style={{ textDecoration: "none" }}
+              >
                 <MenuItem
                   bgColor={"#f00"}
                   _hover={{ bgColor: "#fff", color: "#000000" }}
@@ -107,7 +191,13 @@ export default function Header() {
                 </MenuItem>
               </Link>
 
-              <Link to="requirements" smooth={true} duration={500} offset={-70} style={{ textDecoration: "none" }}>
+              <Link
+                to="requirements"
+                smooth={true}
+                duration={500}
+                offset={-70}
+                style={{ textDecoration: "none" }}
+              >
                 <MenuItem
                   bgColor={"#f00"}
                   _hover={{ bgColor: "#fff", color: "#000000" }}

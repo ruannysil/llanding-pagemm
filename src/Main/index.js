@@ -6,7 +6,7 @@ export default function Main() {
     const [isMobile] = useMediaQuery("(max-width: 851px)") 
     
     return (
-        <Flex p={'0.2rem'}>
+        <Flex>
 
           <Box bg={"#950000"} w={"100%"} height={"32rem"} position="relative">
 
